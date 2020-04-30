@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Coding Template</title>
+  <link rel="stylesheet" type="text/css" href="bundle.css">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <h1>Anders frontend managment of books</h1>
+    <h2>All books in the libary</h2>
+    <button v-on:click="getAll">Load All</button>
+    {{messageGetAll}}
+
+    <div style="overflow:scroll; height: 400px;">
+      <table class="table table-dark">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Publisher</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tr v-for="book in books">
+          <td>{{book.id}}</td>
+          <td>{{book.title}}</td>
+          <td>{{book.author}}</td>
+          <td>{{book.publisher}}</td>
+          <td>{{book.price}}</td>
+        </tr>
+      </table>
+    </div>
+    
+
+    <h2>Pull a specific book from the shelves</h2>
+    The desired id:
+    <input v-model="bookId1" type="number">
+    <button v-on:click="getOne(bookId1)">Load book</button>
+    {{messageGetOne}}
+    <div v-if="oneBook">
+      {{oneBook.id}} - {{oneBook.title}} - {{oneBook.author}} - {{oneBook.publisher}} - {{oneBook.price}}
+    </div>
+
+    <h2>Insert a new book to the libary</h2>
+    <input v-model="bookToAdd.title" placeholder="title" type="text">
+    <input v-model="bookToAdd.author" placeholder="author" type="text">
+    <input v-model="bookToAdd.publisher" placeholder="publisher" type="text">
+    <input v-model="bookToAdd.price" placeholder="price" type="number">
+    <button @click="AddBook">Add book</button>
+    {{messageAddBook}}
+
+    <h2>Delete a book from the id</h2>
+    <input v-model="bookId2" type="number">
+    <button v-on:click="DeleteBook(bookId2)">Delete</button>
+    {{messageDelete}}
+
+  </div>
+
+<!--
+  <h1>Anders frontend managment of books</h1>
+  <h2>All books in the libary</h2>  
+  <div id="outputArea1"></div>
+
+  <h2>Pull a specific book from the shelves</h2>
+  The desired id:
+  <input type="text" id="inputArea2">
+  <input type="button" id="buttonArea2" value="Get the book">
+  <div id="outputArea2"></div>
+
+  <h2>Insert a new book to the libary</h2>
+    <input type="number" id="inputArea3Id" placeholder="Id">
+  <input type="text" id="inputArea3Title" placeholder="Title">
+  <input type="text" id="inputArea3Author" placeholder="Author">
+  <input type="text" id="inputArea3Publisher" placeholder="Publisher">
+  <input type="number" id="inputArea3Price" placeholder="Price">
+  <input type="button" id="buttonArea3" value="Add & update list">
+  <div id="outputArea3"></div>
+
+  <h2>Delete a book from the id</h2>
+  <input type="text" id="inputArea4" placeholder="Id to delete">
+  <input type="button" id="buttonArea4" value="Delete the book">
+  <div id="outputArea4"></div>
+-->
+    
+  <script src="bundle.js"></script>
+</body>
+</html>
